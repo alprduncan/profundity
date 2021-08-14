@@ -13,6 +13,11 @@ class HomeScreen extends Component {
     return (
       <View style={StyleSheet.screens}>
         <Text>Home</Text>
+        <Button
+          color="#00c7ff"
+          title="Home"
+          onPress={() => this.props.navigation.navigate("Home")}
+        />
       </View>
     );
   }
@@ -23,6 +28,11 @@ class AboutScreen extends Component {
     return (
       <View style={StyleSheet.screens}>
         <Text>About</Text>
+        <Button
+          title="About"
+          color="#00c7ff"
+          onPress={() => this.props.navigation.navigate("About")}
+        />
       </View>
     );
   }
@@ -33,6 +43,11 @@ class FeedbackScreen extends Component {
     return (
       <View style={StyleSheet.screens}>
         <Text>Feedback</Text>
+        <Button
+          title="Feedback"
+          color="#00c7ff"
+          onPress={() => this.props.navigation.navigate("Feedback")}
+        />
       </View>
     );
   }
@@ -40,20 +55,29 @@ class FeedbackScreen extends Component {
 
 const TabNav = createBottomTabNavigator(
   {
-    Home: HomeScreen,
-    About: AboutScreen,
-    Feedback: FeedbackScreen,
+    Home: { screen: Home },
+    About: { screen: About },
+    Feedback: { screen: Feedback },
   },
   {
     initialRouteName: "Home",
-    drawerBackgroundColor: "#000",
+    tabBarOptions: {
+      activeTintColor: "#00c7ff",
+      inactiveTintColor: "gray",
+      labelStyle: {
+        fontSize: 16,
+        marginBottom: 10,
+      },
+      // style: {
+      //   backgroundColor: "blue",
+      // },
+    },
   }
 );
 
 const styles = StyleSheet.create({
   screens: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
