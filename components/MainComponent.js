@@ -1,29 +1,62 @@
 import React, { Component } from "react";
-import { ViewBase, StyleSheet, Text, ScrollView } from "react-native";
+import Home from "./HomeComponent";
+import About from "./AboutComponent";
+import Feedback from "./FeedbackComponent";
+import { View, StyleSheet, Text, ScrollView, Button } from "react-native";
+import { createAppContainer } from "react-navigation";
+import SafeAreaView from "react-native-safe-area-view";
+import { Icon } from "react-native-elements";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 
-export default class Main extends Component {
+class HomeScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Let's Go Deep!</Text>
-        <StatusBar style="auto" />
+      <View style={StyleSheet.screens}>
+        <Text>Home</Text>
       </View>
     );
   }
 }
 
+class AboutScreen extends Component {
+  render() {
+    return (
+      <View style={StyleSheet.screens}>
+        <Text>About</Text>
+      </View>
+    );
+  }
+}
+
+class FeedbackScreen extends Component {
+  render() {
+    return (
+      <View style={StyleSheet.screens}>
+        <Text>Feedback</Text>
+      </View>
+    );
+  }
+}
+
+const TabNav = createBottomTabNavigator(
+  {
+    Home: HomeScreen,
+    About: AboutScreen,
+    Feedback: FeedbackScreen,
+  },
+  {
+    initialRouteName: "Home",
+    drawerBackgroundColor: "#000",
+  }
+);
+
 const styles = StyleSheet.create({
-  container: {
+  screens: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
-  text: {
-    color: "#00c7ff",
-    fontSize: 30,
-    fontWeight: "bold",
-    fontFamily: "Roboto",
-    textShadowColor: "white",
-  },
 });
+
+export default createAppContainer(TabNav);
